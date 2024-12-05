@@ -1,8 +1,8 @@
 use std::fs;
 
 enum Trend {
-    increasing,
-    decreasing,
+    Increasing,
+    Decreasing,
 }
 
 pub fn part1() {
@@ -22,9 +22,9 @@ pub fn part1() {
 
         let trend;
         if numbers[0] > numbers[numbers.len() - 1] {
-            trend = Trend::decreasing;
+            trend = Trend::Decreasing;
         } else {
-            trend = Trend::increasing;
+            trend = Trend::Increasing;
         }
 
         for i in 1..numbers.len() {
@@ -32,12 +32,12 @@ pub fn part1() {
             let curr = numbers[i];
 
             match trend {
-                Trend::increasing => {
+                Trend::Increasing => {
                     if prev > curr {
                         continue 'lines;
                     }
                 }
-                Trend::decreasing => {
+                Trend::Decreasing => {
                     if prev < curr {
                         continue 'lines;
                     }
