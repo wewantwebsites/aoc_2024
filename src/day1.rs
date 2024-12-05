@@ -49,19 +49,18 @@ pub fn part2(towers: &Towers) -> u32 {
     let mut counter: HashMap<u32, u32> = HashMap::new();
     let mut total = 0;
 
-    for i in 0..towers.left.len() {
-        let l = towers.left[i];
+    for l in towers.left.iter() {
+        for r in towers.right.iter() {
+            if l != r {
+                continue;
+            }
 
-        for j in 0..towers.right.len() {
-            let r = towers.right[j];
-            if l == r {
-                if let Some(value) = counter.insert(l, 1) {
-                    counter.insert(l, value + 1);
-                }
+            if let Some(value) = counter.insert(*l, 1) {
+                counter.insert(*l, value + 1);
             }
         }
 
-        if let Some(value) = counter.get(&l) {
+        if let Some(value) = counter.get(l) {
             total += value * l;
         }
     }
