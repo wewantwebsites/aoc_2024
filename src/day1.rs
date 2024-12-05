@@ -12,13 +12,13 @@ impl Towers {
         let file = fs::read_to_string(path).expect("Unable to read file");
 
         for line in file.lines() {
-            let mut nums = line.split_whitespace();
+            let nums: Vec<u32> = line
+                .split_whitespace()
+                .map(|s| s.parse().unwrap())
+                .collect();
 
-            let l = nums.next().unwrap().parse().unwrap();
-            let r = nums.next().unwrap().parse().unwrap();
-
-            left.push(l);
-            right.push(r);
+            left.push(nums[0]);
+            right.push(nums[1]);
         }
         left.sort();
         right.sort();
